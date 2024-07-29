@@ -15,9 +15,9 @@ export default function SlideOver({ open, setOpen }: any) {
   const [lastName, setLastName] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [message, setMessage] = useState("");
-  const inputEl = useRef(null);
+  const inputEl: any = useRef(null);
 
-  const subscribe = async (e) => {
+  const subscribe = async (e: any) => {
     e.preventDefault();
     const res = await fetch("/api/subscribe", {
       body: JSON.stringify({

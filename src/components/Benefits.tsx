@@ -25,7 +25,7 @@ interface BenefitsProps {
 export const Benefits = (props: Readonly<BenefitsProps>) => {
   // const { data } = props;
 
-  const data = {
+  const data: any = {
     title: "What’s the secret?",
     desc: "Simple – really! When you hit the time limit that you set for yourself, the selected apps will become blocked. Need more time? Gotta send a time request to your friends or family (aka your Powermates!) for approval. No passwords or codes to remember. No extra gadgets or devices to carry. Just one simple, interactive interface!",
     image: benefitOneImg,
@@ -84,7 +84,7 @@ export const Benefits = (props: Readonly<BenefitsProps>) => {
           </div>
 
           <div className="w-full mt-5">
-            {data.bullets.map((item, index) => (
+            {data.bullets.map((item: any, index: any) => (
               <Benefit key={index} title={item.title} icon={item.icon}>
                 {item.desc}
               </Benefit>

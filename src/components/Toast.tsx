@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-const Toast = ({ open, message, duration = 3000, onClose }) => {
+const Toast = ({ open, message, duration = 3000, onClose }: any) => {
   const [visible, setVisible] = useState(open);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ Toast.propTypes = {
   onClose: PropTypes.func,
 };
 
-const styles = {
+const styles: any = {
   toast: {
     position: "fixed",
     bottom: "20px",
