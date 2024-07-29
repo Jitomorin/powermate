@@ -110,7 +110,10 @@ export default function SlideOver({ open, setOpen }: any) {
                       <div className="pb-1 sm:pb-6">
                         <div>
                           <div className="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
-                            <form onSubmit={subscribe} className="sm:flex-1">
+                            <form
+                              onSubmit={subscribeUser}
+                              className="sm:flex-1"
+                            >
                               <div>
                                 <div className="flex flex-col space-y-8">
                                   <input

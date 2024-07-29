@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-export default async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextApiRequest, res: NextApiResponse) {
   const { email } = JSON.parse(req.body);
   if (!email) {
     res.status(401).json({ error: "Email is required" });
