@@ -1,38 +1,46 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-  const { email } = JSON.parse(req.body);
-  if (!email) {
-    res.status(401).json({ error: "Email is required" });
-    return;
-  }
-  const mailChimpData = {
-    members: [
-      {
-        email_address: email,
-        status: "subscribed",
-      },
-    ],
-  };
+import { NextRequest, NextResponse } from "next/server";
+
+export async function POST(request: NextRequest) {
   try {
+    const { email } = await request.json(); // Parse JSON data from the request body
+    if (!email) {
+      return NextResponse.json({ error: "Email is required" }, { status: 401 });
+    }
+
+    const mailChimpData = {
+      members: [
+        {
+          email_address: email,
+          status: "subscribed",
+        },
+      ],
+    };
+
     const audienceId = process.env.MAILCHIMP_AUDIENCE_ID as string;
     const URL = `https://us1.api.mailchimp.com/3.0/lists/${audienceId}`;
     const response = await fetch(URL, {
       method: "POST",
       headers: {
         Authorization: `auth ${process.env.MAILCHIMP_API_KEY as string}`,
+        "Content-Type": "application/json", // Ensure the correct content type
       },
       body: JSON.stringify(mailChimpData),
     });
+
     const data = await response.json();
-    // Error handling.
-    if (data.errors[0]?.error) {
-      return res.status(401).json({ error: data.errors[0].error });
+
+    if (data.errors?.[0]?.error) {
+      return NextResponse.json(
+        { error: data.errors[0].error },
+        { status: 401 }
+      );
     } else {
-      res.status(200).json({ success: true });
+      return NextResponse.json({ success: true }, { status: 200 });
     }
-  } catch (e) {
-    res
-      .status(401)
-      .json({ error: "Something went wrong, please try again later." });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Something went wrong, please try again later." },
+      { status: 500 }
+    );
   }
 }
