@@ -21,33 +21,31 @@ export default function Home() {
         // preTitle="Nextly Benefits"
         title="Struggling to Limit Your Social Media Time? We've Got a Solution!"
       >
-        It’s okay. We’ve been there and done that. And of course, it didn’t
-        work. But that’s why we built this cool new tool that we believe WILL
-        work. Use the power of your friends and family to beat the addictive
-        social media algorithms and take back control of your time once and for
-        all!
+        Simple – really! When you hit the time limit that you set for yourself,
+        the selected apps will get blocked. Need more time? Gotta send a time
+        request to your friends (aka your Powermate!) for approval
       </SectionTitle>
 
       <Benefits />
       {/* <Benefits imgPos="right" data={benefitTwo} /> */}
-
+      {/* 
       <SectionTitle
         // preTitle="Watch a video"
         title="Subscribe to our waiting list"
       >
         Please enable JavaScript in your browser to complete this form.
-      </SectionTitle>
+      </SectionTitle> */}
 
       {/* <Video videoId="fZ0D0cnR88E" /> */}
-      <Cta open={open} setOpen={setOpen} />
+      {/* <Cta open={open} setOpen={setOpen} /> */}
 
-      <SectionTitle title="Frequently Asked Questions">
+      {/* <SectionTitle title="Frequently Asked Questions">
         {`Find quick answers to common questions about Powermate. For more help, contact our support team.
 
 `}
       </SectionTitle>
 
-      <Faq />
+      <Faq /> */}
     </Container>
   );
 }

@@ -1,0 +1,34 @@
+/* carousel.css */
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.carousel {
+  overflow: hidden;
+  width: 100%;
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.carousel-track {
+  display: flex;
+  animation: slide 15s linear infinite;
+}
+
+.carousel-item {
+  flex: 0 0 25%; /* 4 items visible by default */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Responsive adjustments */

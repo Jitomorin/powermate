@@ -5,26 +5,85 @@ import { Container } from "@/components/Container";
 import heroImg from "../../public/img/hero.png";
 import SlideOver from "./SlideOver";
 import RobotImage from "../../public/img/robot.png";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import FloatingBalls from "./FloatingBall";
+import CarouselSlider from "./CarouselSlider";
 
 export const Hero = ({ open, setOpen }: any) => {
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const [message, setMessage] = useState("");
+  const inputEl: any = useRef(null);
+
+  const subscribe = async (e: any) => {
+    e.preventDefault();
+    const res = await fetch("/api/subscribe", {
+      body: JSON.stringify({
+        email: inputEl.current.value,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
+    const { error } = await res.json();
+    if (error) {
+      setMessage(error);
+      return;
+    }
+    inputEl.current.value = "";
+    setMessage("Success! 🔥🔥🚀🚀 You are now subscribed to the newsletter.");
+  };
+
+  const subscribeUser = async (e: any) => {
+    e.preventDefault();
+
+    // this is where your mailchimp request is made
+    setLoading(true);
+    await fetch("/api/subscribe", {
+      body: JSON.stringify({
+        email,
+      }),
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      method: "POST",
+    })
+      .then(() => {
+        console.log("should have worked");
+        setMessage("Submitted successfully");
+        setShowToast(true);
+        setLoading(false);
+      })
+      .catch((e: any) => {
+        setMessage(e.message);
+        setShowToast(true);
+        setLoading(false);
+      });
+  };
+
   return (
     <>
-      <Container className="flex flex-wrap ">
-        <SlideOver open={open} setOpen={setOpen} />
+      <Container className="flex flex-col ">
+        {/* <SlideOver open={open} setOpen={setOpen} /> */}
         {/* <FloatingBalls /> */}
-        <div className="flex items-center w-full lg:w-1/2">
-          <div className="max-w-2xl mb-8">
-            <h1 className="text-4xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white">
+        <div className="flex items-center justify-center align-middle w-full ">
+          <div className=" mb-8 mx-auto">
+            <h1 className="text-4xl font-bold leading-snug tracking-tight text-center text-gray-800  lg:leading-tight lg:text-6xl xl:leading-tight dark:text-white">
               Take Control of Your Social Media Time with Friends
             </h1>
-            <p className="py-5 text-xl leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
+            <p className="py-5 lg:px-24 px-0 text-center text-lg leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
               An app that helps you limit your social media use to 1 hour (or 2)
               per day with the support of your friends!
             </p>
+            <CarouselSlider />
 
-            <div className="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
+            {/* <div className="flex flex-row justify-center items-center space-y-3 sm:space-x-4 sm:space-y-0 ">
               <button
                 onClick={() => {
                   setOpen(!open);
@@ -33,16 +92,60 @@ export const Hero = ({ open, setOpen }: any) => {
               >
                 Subscribe now
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
-        <div className="flex items-center justify-center w-full lg:w-1/2">
-          <div className="">
+        <div className="flex items-center flex-col lg:flex-row justify-center lg:justify-between w-full ">
+          <div className="w-full">
+            <h1 className="text-3xl font-bold leading-snug tracking-tight text-center text-gray-800 lg:text-3xl lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white">
+              Join the wait list
+            </h1>
+            <div className="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
+              <form onSubmit={subscribeUser} className="sm:flex-1">
+                <div>
+                  <div className="flex flex-col space-y-8">
+                    <div className="flex flex-col space-y-2">
+                      <label className="font-semibold">Name</label>
+                      <input
+                        value={firstName}
+                        onChange={(e: any) => {
+                          setFirstName(e.target.value);
+                        }}
+                        className="rounded-lg border border-gray-400 p-2 focus:border-gray-400 focus:outline-none focus:ring-0"
+                        placeholder="Enter your name"
+                      />
+                    </div>
+                    <div className="flex flex-col space-y-2">
+                      <label className="font-semibold">Email</label>
+                      <input
+                        ref={inputEl}
+                        value={email}
+                        onChange={(e: any) => {
+                          setEmail(e.target.value);
+                        }}
+                        className="rounded-lg border border-gray-400 p-2 focus:border-gray-400 focus:outline-none focus:ring-0"
+                        placeholder="Enter your email"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-5 flex flex-wrap space-y-3 sm:space-x-3 sm:space-y-0">
+                  <button
+                    type="submit"
+                    className="inline-flex w-full flex-shrink-0 items-center justify-center rounded-md bg-transparent hover:bg-[#5dc8793a] px-3 py-2 text-sm font-semibold text-[#5dc87a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-0 sm:flex-1"
+                  >
+                    {loading ? "Loading..." : "Submit"}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div className="w-full ">
             <Image
               src={RobotImage}
-              width="616"
-              height="617"
-              className={"object-cover"}
+              width="416"
+              height="417"
+              className={"object-cover mx-auto"}
               alt="Hero Illustration"
               loading="eager"
               placeholder="blur"
@@ -50,20 +153,148 @@ export const Hero = ({ open, setOpen }: any) => {
           </div>
         </div>
       </Container>
-      <Container>
-        <div className="flex flex-col justify-center">
-          <div className="text-xl text-center text-gray-700 dark:text-white">
-            Trusted by{" "}
-            <span className="text-black dark:text-white font-bold">
-              customers
-            </span>{" "}
-            worldwide
-          </div>
-        </div>
-      </Container>
     </>
   );
 };
+export function XLogo() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      x="0px"
+      y="0px"
+      width="100"
+      height="100"
+      viewBox="0,0,300,150"
+      style={{ fill: "#cacaca" }}
+    >
+      <g
+        fill="#cacaca"
+        fill-rule="nonzero"
+        stroke="none"
+        stroke-width="1"
+        stroke-linecap="butt"
+        stroke-linejoin="miter"
+        stroke-miterlimit="10"
+        stroke-dasharray=""
+        stroke-dashoffset="0"
+        font-family="none"
+        font-weight="none"
+        font-size="none"
+        text-anchor="none"
+        style={{ mixBlendMode: "normal" }}
+      >
+        <g transform="scale(8.53333,8.53333)">
+          <path d="M26.37,26l-8.795,-12.822l0.015,0.012l7.93,-9.19h-2.65l-6.46,7.48l-5.13,-7.48h-6.95l8.211,11.971l-0.001,-0.001l-8.66,10.03h2.65l7.182,-8.322l5.708,8.322zM10.23,6l12.34,18h-2.1l-12.35,-18z"></path>
+        </g>
+      </g>
+    </svg>
+  );
+}
+
+export function InstagramLogo() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      x="0px"
+      y="0px"
+      width="100"
+      height="100"
+      viewBox="0,0,300,150"
+      style={{ fill: "#cacaca" }}
+    >
+      <g
+        fill="#cacaca"
+        fill-rule="nonzero"
+        stroke="none"
+        stroke-width="1"
+        stroke-linecap="butt"
+        stroke-linejoin="miter"
+        stroke-miterlimit="10"
+        stroke-dasharray=""
+        stroke-dashoffset="0"
+        font-family="none"
+        font-weight="none"
+        font-size="none"
+        text-anchor="none"
+        style={{ mixBlendMode: "normal" }}
+      >
+        <g transform="scale(4,4)">
+          <path d="M21.58008,7c-8.039,0 -14.58008,6.54494 -14.58008,14.58594v20.83203c0,8.04 6.54494,14.58203 14.58594,14.58203h20.83203c8.04,0 14.58203,-6.54494 14.58203,-14.58594v-20.83398c0,-8.039 -6.54494,-14.58008 -14.58594,-14.58008zM47,15c1.104,0 2,0.896 2,2c0,1.104 -0.896,2 -2,2c-1.104,0 -2,-0.896 -2,-2c0,-1.104 0.896,-2 2,-2zM32,19c7.17,0 13,5.83 13,13c0,7.17 -5.831,13 -13,13c-7.17,0 -13,-5.831 -13,-13c0,-7.169 5.83,-13 13,-13zM32,23c-4.971,0 -9,4.029 -9,9c0,4.971 4.029,9 9,9c4.971,0 9,-4.029 9,-9c0,-4.971 -4.029,-9 -9,-9z"></path>
+        </g>
+      </g>
+    </svg>
+  );
+}
+
+export function TikTokLogo() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      x="0px"
+      y="0px"
+      width="100"
+      height="100"
+      viewBox="0,0,300,150"
+      style={{ fill: "#cacaca" }}
+    >
+      <g
+        fill="#cacaca"
+        fill-rule="nonzero"
+        stroke="none"
+        stroke-width="1"
+        stroke-linecap="butt"
+        stroke-linejoin="miter"
+        stroke-miterlimit="10"
+        stroke-dasharray=""
+        stroke-dashoffset="0"
+        font-family="none"
+        font-weight="none"
+        font-size="none"
+        text-anchor="none"
+        style={{ mixBlendMode: "normal" }}
+      >
+        <g transform="scale(8.53333,8.53333)">
+          <path d="M24,4h-18c-1.105,0 -2,0.895 -2,2v18c0,1.105 0.895,2 2,2h18c1.105,0 2,-0.895 2,-2v-18c0,-1.105 -0.896,-2 -2,-2zM22.689,13.474c-0.13,0.012 -0.261,0.02 -0.393,0.02c-1.495,0 -2.809,-0.768 -3.574,-1.931c0,3.049 0,6.519 0,6.577c0,2.685 -2.177,4.861 -4.861,4.861c-2.684,-0.001 -4.861,-2.178 -4.861,-4.862c0,-2.685 2.177,-4.861 4.861,-4.861c0.102,0 0.201,0.009 0.3,0.015v2.396c-0.1,-0.012 -0.197,-0.03 -0.3,-0.03c-1.37,0 -2.481,1.111 -2.481,2.481c0,1.37 1.11,2.481 2.481,2.481c1.371,0 2.581,-1.08 2.581,-2.45c0,-0.055 0.024,-11.17 0.024,-11.17h2.289c0.215,2.047 1.868,3.663 3.934,3.811z"></path>
+        </g>
+      </g>
+    </svg>
+  );
+}
+
+export function SnapchatLogo() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      x="0px"
+      y="0px"
+      width="100"
+      height="100"
+      viewBox="0,0,300,150"
+      style={{ fill: "#cacaca" }}
+    >
+      <g
+        fill="#cacaca"
+        fill-rule="nonzero"
+        stroke="none"
+        stroke-width="1"
+        stroke-linecap="butt"
+        stroke-linejoin="miter"
+        stroke-miterlimit="10"
+        stroke-dasharray=""
+        stroke-dashoffset="0"
+        font-family="none"
+        font-weight="none"
+        font-size="none"
+        text-anchor="none"
+        style={{ mixBlendMode: "normal" }}
+      >
+        <g transform="scale(5.12,5.12)">
+          <path d="M46.77344,35.07813c-5.80469,-0.95703 -8.45703,-6.96875 -8.54297,-7.16406c-0.01172,-0.03516 -0.03906,-0.09766 -0.05469,-0.13281c-0.17578,-0.35156 -0.35156,-0.84766 -0.20312,-1.19922c0.25391,-0.60156 1.46094,-0.98437 2.18359,-1.21484c0.25391,-0.08203 0.49609,-0.15625 0.68359,-0.23047c1.75391,-0.69531 2.62891,-1.60156 2.60938,-2.70312c-0.01562,-0.88672 -0.69531,-1.69922 -1.69531,-2.05078c-0.34766,-0.14844 -0.74609,-0.22266 -1.14844,-0.22266c-0.27344,0 -0.6875,0.03906 -1.08594,0.22266c-0.66797,0.3125 -1.25391,0.48047 -1.67187,0.5c-0.08984,-0.00391 -0.16797,-0.01172 -0.23437,-0.02344l0.04297,-0.6875c0.19531,-3.10937 0.44141,-6.98437 -0.60937,-9.33984c-3.10156,-6.94141 -9.67187,-7.48047 -11.61328,-7.48047l-0.88281,0.00781c-1.9375,0 -8.49609,0.53906 -11.58984,7.47656c-1.05078,2.35547 -0.80859,6.22656 -0.60937,9.33984l0.00781,0.11719c0.01172,0.19141 0.02344,0.38281 0.03516,0.56641c-0.43359,0.07813 -1.28125,-0.06641 -2.16016,-0.47656c-1.19531,-0.55859 -3.34766,0.17969 -3.64453,1.74219c-0.13281,0.69141 0.02734,2.00391 2.57422,3.00781c0.19141,0.07813 0.42969,0.15234 0.6875,0.23438c0.71875,0.23047 1.92578,0.60938 2.17969,1.21484c0.14844,0.35156 -0.02734,0.84766 -0.23437,1.27344c-0.10937,0.25391 -2.74609,6.26563 -8.5625,7.22266c-0.74219,0.12109 -1.26953,0.77734 -1.23047,1.53516c0.01172,0.19922 0.0625,0.39844 0.14453,0.59375c0.52734,1.23828 2.44531,2.08984 6.02344,2.67188c0.0625,0.21094 0.13281,0.52344 0.17188,0.69531c0.07422,0.35547 0.15625,0.71484 0.26563,1.08984c0.10547,0.35547 0.46875,1.17969 1.60156,1.17969c0.34375,0 0.71875,-0.07422 1.12109,-0.15234c0.59375,-0.11719 1.33594,-0.26172 2.28906,-0.26172c0.53125,0 1.07813,0.04688 1.62891,0.13672c1.01563,0.16797 1.93359,0.82031 3,1.57031c1.66406,1.17969 3.55078,2.51172 6.47656,2.51172c0.07813,0 0.15625,-0.00391 0.23047,-0.00781c0.10547,0.00391 0.21484,0.00781 0.32422,0.00781c2.92578,0 4.8125,-1.33594 6.48047,-2.51172c1.01563,-0.72266 1.97656,-1.39844 2.99609,-1.57031c0.55078,-0.08984 1.09766,-0.13672 1.62891,-0.13672c0.91797,0 1.64453,0.11719 2.29297,0.24609c0.46094,0.08984 0.82813,0.13281 1.16797,0.13281c0.75781,0 1.33984,-0.43359 1.55078,-1.16016c0.10938,-0.36719 0.1875,-0.72266 0.26563,-1.08203c0.03125,-0.13281 0.10547,-0.46875 0.17188,-0.69141c3.57813,-0.58203 5.49609,-1.43359 6.01953,-2.66016c0.08594,-0.19531 0.13281,-0.39844 0.14844,-0.60937c0.03906,-0.74609 -0.48828,-1.40234 -1.23047,-1.52734z"></path>
+        </g>
+      </g>
+    </svg>
+  );
+}
 
 function AmazonLogo() {
   return (

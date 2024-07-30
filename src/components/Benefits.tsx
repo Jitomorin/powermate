@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { Container } from "@/components/Container";
-import benefitOneImg from "../../public/img/benefit-one.png";
+import benefitOneImg from "../../public/img/unnamed.png";
 import {
   ClockIcon,
   DevicePhoneMobileIcon,
@@ -26,7 +26,7 @@ export const Benefits = (props: Readonly<BenefitsProps>) => {
   // const { data } = props;
 
   const data: any = {
-    title: "What’s the secret?",
+    title: "How it works?",
     desc: "Simple – really! When you hit the time limit that you set for yourself, the selected apps will become blocked. Need more time? Gotta send a time request to your friends or family (aka your Powermates!) for approval. No passwords or codes to remember. No extra gadgets or devices to carry. Just one simple, interactive interface!",
     image: benefitOneImg,
     bullets: [
@@ -74,11 +74,11 @@ export const Benefits = (props: Readonly<BenefitsProps>) => {
       >
         <div>
           <div className="flex flex-col w-full mt-4">
-            <h3 className="max-w-2xl mt-3 text-3xl font-bold leading-snug tracking-tight text-gray-800 lg:leading-tight lg:text-4xl dark:text-white">
+            <h3 className="max-w-2xl text-center lg:text-left mt-3 text-3xl font-bold leading-snug tracking-tight text-gray-800 lg:leading-tight lg:text-4xl dark:text-white">
               {data.title}
             </h3>
 
-            <p className="max-w-2xl py-4 text-lg leading-normal text-gray-500 lg:text-xl xl:text-xl dark:text-gray-300">
+            <p className="max-w-2xl text-center lg:text-left py-4 text-lg leading-normal text-gray-500 lg:text-xl xl:text-xl dark:text-gray-300">
               {data.desc}
             </p>
           </div>
