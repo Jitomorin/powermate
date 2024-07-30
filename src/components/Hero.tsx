@@ -8,21 +8,23 @@ import RobotImage from "../../public/img/robot.png";
 import { useRef, useState } from "react";
 import FloatingBalls from "./FloatingBall";
 import CarouselSlider from "./CarouselSlider";
+import Toast from "./Toast";
 
 export const Hero = ({ open, setOpen }: any) => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [message, setMessage] = useState("");
   const inputEl: any = useRef(null);
 
   const subscribe = async (e: any) => {
+    console.log(`Data: ${email} ${name}`);
     e.preventDefault();
     const res = await fetch("/api/subscribe", {
       body: JSON.stringify({
-        email: inputEl.current.value,
+        email,
+        name,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +37,7 @@ export const Hero = ({ open, setOpen }: any) => {
       return;
     }
     inputEl.current.value = "";
-    setMessage("Success! 🔥🔥🚀🚀 You are now subscribed to the newsletter.");
+    setMessage("You are now added to the waitlist.");
   };
 
   const subscribeUser = async (e: any) => {
@@ -46,6 +48,7 @@ export const Hero = ({ open, setOpen }: any) => {
     await fetch("/api/subscribe", {
       body: JSON.stringify({
         email,
+        name,
       }),
 
       headers: {
@@ -54,11 +57,15 @@ export const Hero = ({ open, setOpen }: any) => {
 
       method: "POST",
     })
-      .then(() => {
-        console.log("should have worked");
+      .then((res) => {
+        console.log("placeee", res);
+
+        // console.log("should have worked");
         setMessage("Submitted successfully");
         setShowToast(true);
         setLoading(false);
+        setEmail("");
+        setName("");
       })
       .catch((e: any) => {
         setMessage(e.message);
@@ -107,9 +114,9 @@ export const Hero = ({ open, setOpen }: any) => {
                     <div className="flex flex-col space-y-2">
                       <label className="font-semibold">Name</label>
                       <input
-                        value={firstName}
+                        value={name}
                         onChange={(e: any) => {
-                          setFirstName(e.target.value);
+                          setName(e.target.value);
                         }}
                         className="rounded-lg border border-gray-400 p-2 focus:border-gray-400 focus:outline-none focus:ring-0"
                         placeholder="Enter your name"
@@ -152,6 +159,14 @@ export const Hero = ({ open, setOpen }: any) => {
             />
           </div>
         </div>
+        <Toast
+          open={showToast}
+          message={message}
+          duration={3000} // Duration in milliseconds
+          onClose={() => {
+            setShowToast(false);
+          }}
+        />
       </Container>
     </>
   );

@@ -1,45 +1,40 @@
-import { NextRequest, NextResponse } from "next/server";
+import mailchimp from "@mailchimp/mailchimp_marketing";
 
-export async function POST(request: NextRequest) {
+mailchimp.setConfig({
+  apiKey: process.env.MAILCHIMP_API_KEY,
+  server: process.env.MAILCHIMP_API_SERVER, // e.g., 'us1'
+});
+
+export async function POST(request: Request, res: any) {
   try {
-    const { email } = await request.json(); // Parse JSON data from the request body
-    if (!email) {
-      return NextResponse.json({ error: "Email is required" }, { status: 401 });
-    }
+    console.log("api key", process.env.MAILCHIMP_API_KEY);
+    console.log("server", process.env.MAILCHIMP_API_SERVER);
+    const { email, name } = await request.json();
+    console.log("email", email);
 
-    const mailChimpData = {
-      members: [
-        {
-          email_address: email,
-          status: "subscribed",
-        },
-      ],
-    };
-
-    const audienceId = process.env.MAILCHIMP_AUDIENCE_ID as string;
-    const URL = `https://us1.api.mailchimp.com/3.0/lists/${audienceId}`;
-    const response = await fetch(URL, {
-      method: "POST",
-      headers: {
-        Authorization: `auth ${process.env.MAILCHIMP_API_KEY as string}`,
-        "Content-Type": "application/json", // Ensure the correct content type
-      },
-      body: JSON.stringify(mailChimpData),
-    });
-
-    const data = await response.json();
-
-    if (data.errors?.[0]?.error) {
-      return NextResponse.json(
-        { error: data.errors[0].error },
-        { status: 401 }
+    if (!email || !name) {
+      return new Response(
+        JSON.stringify({ error: "Email and Name are required" }),
+        { status: 400 }
       );
-    } else {
-      return NextResponse.json({ success: true }, { status: 200 });
     }
-  } catch (error) {
-    return NextResponse.json(
-      { error: "Something went wrong, please try again later." },
+    await mailchimp.lists
+      .addListMember(process.env.MAILCHIMP_AUDIENCE_ID!, {
+        email_address: email,
+        status: "subscribed",
+        merge_fields: {
+          FNAME: name,
+        },
+      })
+      .then(() => {});
+
+    return new Response(JSON.stringify({ received: true }), {
+      status: 200,
+    });
+  } catch (error: any) {
+    console.log("peter", error);
+    return new Response(
+      JSON.stringify({ error: error.message || error.toString() }),
       { status: 500 }
     );
   }
