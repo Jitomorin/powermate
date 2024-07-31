@@ -1,0 +1,16 @@
+.squiggly-underline {
+  padding: 30px 0 8px;
+  position: relative;
+}
+
+.squiggly-underline::before {
+  content: "";
+  position: absolute;
+  left: 7%;
+  bottom: 16px;
+  width: 100px;
+  height: 6px;
+  transform: skew(-12deg) translateX(-50%);
+  background: #5dc87a;
+  z-index: -1;
+}
