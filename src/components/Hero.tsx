@@ -92,8 +92,8 @@ export const Hero = ({ open, setOpen }: any) => {
       <Container className="flex flex-col p-0 m-0">
         {/* <SlideOver open={open} setOpen={setOpen} /> */}
         {/* <FloatingBalls /> */}
-        <div className="flex items-start xl:mt-72 justify-start w-full min-h-[70vh] lg:h-screen mt-20 ">
-          <div className=" mx-auto flex flex-col">
+        <div className="flex xl:items-start xl:mt-20 2xl:mt-72 justify-start w-full min-h-[70vh] lg:h-screen mt-14 ">
+          <div className=" mx-auto flex flex-col ">
             <h1 className="text-3xl font-bold leading-snug tracking-tight text-center text-[#1f2937] dark:text-white  lg:leading-tight lg:text-6xl xl:leading-tight md:px-10 xl:px-96">
               Take Control of Your Social Media Time with Friends
             </h1>
@@ -101,6 +101,66 @@ export const Hero = ({ open, setOpen }: any) => {
               An app that helps you limit your social media use to 1 hour (or 2)
               per day with the support of your friends!
             </p>
+            <div className="flex items-center flex-col lg:flex-row justify-center lg:justify-between w-full ">
+              <div className="w-full px-0 sm:px-10 md:px-52 xl:px-96">
+                <div className="mt-6   sm:flex sm:items-end lg:px-20">
+                  <form onSubmit={subscribeUser} className="sm:flex-1">
+                    <div>
+                      <div className="flex flex-col space-y-2">
+                        <div className="flex flex-col space-y-2">
+                          <label className="font-semibold">Name</label>
+                          <input
+                            value={name}
+                            onChange={(e: any) => {
+                              setName(e.target.value);
+                            }}
+                            className="rounded-lg border border-gray-400 p-2 focus:border-gray-400 focus:outline-none focus:ring-0"
+                            placeholder="eg. John doe"
+                          />
+                        </div>
+                        <div className="flex flex-col space-y-2">
+                          <label className="font-semibold">Email</label>
+                          <div className="relative">
+                            <input
+                              ref={inputEl}
+                              value={email}
+                              onChange={(e: any) => setEmail(e.target.value)}
+                              className="w-full rounded-lg border border-gray-400 p-2 pr-16 focus:border-gray-400 focus:outline-none focus:ring-0"
+                              placeholder="eg. johndoe@gmail.com"
+                            />
+                            <button
+                              type="submit"
+                              className="absolute right-2 top-1/2 transform -translate-y-1/2 rounded-md bg-transparent hover:bg-[#5dc8793a] px-3 py-2 text-sm font-semibold text-[#5dc87a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-0"
+                            >
+                              {loading ? "Loading..." : "Submit"}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* <div className="mt-5 flex flex-wrap space-y-3 sm:space-x-3 sm:space-y-0">
+                    <button
+                      type="submit"
+                      className="inline-flex w-full flex-shrink-0 items-center justify-center rounded-md bg-transparent hover:bg-[#5dc8793a] px-3 py-2 text-sm font-semibold text-[#5dc87a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-0 sm:flex-1"
+                    >
+                      {loading ? "Loading..." : "Submit"}
+                    </button>
+                  </div> */}
+                  </form>
+                </div>
+              </div>
+              {/* <div className="w-full ">
+                <Image
+                  src={RobotImage}
+                  width="316"
+                  height="317"
+                  className={"object-cover mx-auto"}
+                  alt="Hero Illustration"
+                  loading="eager"
+                  // placeholder="blur"
+                />
+              </div> */}
+            </div>
 
             {/* <ScrollButton targetRef={targetRef} /> */}
           </div>
@@ -113,7 +173,7 @@ export const Hero = ({ open, setOpen }: any) => {
           >
             <span className="">Join the wait list</span>
           </h1>
-          <div className="flex items-center flex-col lg:flex-row justify-center lg:justify-between w-full min-h-[80vh]">
+          {/* <div className="flex items-center flex-col lg:flex-row justify-center lg:justify-between w-full min-h-[80vh]">
             <div className="w-full">
               <div className="mt-6 xs:px-8 md:px-28 px-10  sm:flex sm:items-end lg:px-20">
                 <form onSubmit={subscribeUser} className="sm:flex-1">
@@ -150,14 +210,7 @@ export const Hero = ({ open, setOpen }: any) => {
                       </div>
                     </div>
                   </div>
-                  {/* <div className="mt-5 flex flex-wrap space-y-3 sm:space-x-3 sm:space-y-0">
-                    <button
-                      type="submit"
-                      className="inline-flex w-full flex-shrink-0 items-center justify-center rounded-md bg-transparent hover:bg-[#5dc8793a] px-3 py-2 text-sm font-semibold text-[#5dc87a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-0 sm:flex-1"
-                    >
-                      {loading ? "Loading..." : "Submit"}
-                    </button>
-                  </div> */}
+                 
                 </form>
               </div>
             </div>
@@ -172,7 +225,7 @@ export const Hero = ({ open, setOpen }: any) => {
                 // placeholder="blur"
               />
             </div>
-          </div>
+          </div> */}
         </div>
 
         <Toast
