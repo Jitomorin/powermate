@@ -21,9 +21,9 @@ export default function Home() {
         // preTitle="Nextly Benefits"
         title="Struggling to Limit Your Social Media Time? We've Got a Solution!"
       >
-        Simple – really! When you hit the time limit that you set for yourself,
-        the selected apps will get blocked. Need more time? Gotta send a time
-        request to your friends (aka your Powermate!) for approval
+        We’ve been there and done that. Use the power of your friends to beat
+        the addictive social media algorithms and take back control of your time
+        once and for all!
       </SectionTitle>
 
       <Benefits />
