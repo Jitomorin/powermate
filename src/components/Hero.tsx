@@ -129,6 +129,9 @@ export const Hero = ({ open, setOpen }: any) => {
 
         <div className="flex items-center flex-col lg:flex-row justify-center lg:justify-between w-full ">
           <div className="w-full">
+            <h1 className="text-3xl font-bold leading-snug tracking-tight text-center text-gray-800 lg:text-3xl lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white">
+              Join the wait list
+            </h1>
             <div className="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
               <form onSubmit={subscribeUser} className="sm:flex-1">
                 <div>
@@ -174,12 +177,9 @@ export const Hero = ({ open, setOpen }: any) => {
               src={RobotImage}
               width="316"
               height="317"
-              width="316"
-              height="317"
               className={"object-cover mx-auto"}
               alt="Hero Illustration"
               loading="eager"
-              // placeholder="blur"
               // placeholder="blur"
             />
           </div>
@@ -194,7 +194,5 @@ export const Hero = ({ open, setOpen }: any) => {
         />
       </Container>
     </div>
-    </div>
   );
-};
 };
