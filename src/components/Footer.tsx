@@ -59,7 +59,7 @@ export function Footer() {
         </div>
 
         <div className="my-10 text-sm text-center text-gray-600 dark:text-gray-400">
-          Copyright © {new Date().getFullYear()} Powermate Illustrations from{" "}
+          Copyright © {new Date().getFullYear()} Powermate - Illustrations from{" "}
           <a href="https://icons8.com/" target="_blank" rel="noopener ">
             Icons8
           </a>

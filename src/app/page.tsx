@@ -15,7 +15,7 @@ import { useState } from "react";
 export default function Home() {
   const [open, setOpen] = useState(false);
   return (
-    <Container>
+    <Container className="px-0">
       <Hero open={open} setOpen={setOpen} />
       <SectionTitle
         // preTitle="Nextly Benefits"
