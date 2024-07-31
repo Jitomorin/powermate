@@ -94,7 +94,7 @@ export const Hero = ({ open, setOpen }: any) => {
         {/* <FloatingBalls /> */}
         <div className="flex items-start justify-start w-full min-h-[70vh] lg:h-screen mt-20 ">
           <div className=" mx-auto flex flex-col">
-            <h1 className="text-3xl font-bold leading-snug tracking-tight text-center text-[#1f2937] dark:text-white  lg:leading-tight lg:text-6xl xl:leading-tight">
+            <h1 className="text-3xl font-bold leading-snug tracking-tight text-center text-[#1f2937] dark:text-white  lg:leading-tight lg:text-6xl xl:leading-tight md:px-10">
               Take Control of Your Social Media Time with Friends
             </h1>
             <p className="py-5 lg:px-24 px-0 md:px-24 text-center text-lg leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
