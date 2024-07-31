@@ -92,51 +92,30 @@ export const Hero = ({ open, setOpen }: any) => {
       <Container className="flex flex-col p-0 m-0">
         {/* <SlideOver open={open} setOpen={setOpen} /> */}
         {/* <FloatingBalls /> */}
-        <div className="flex items-start justify-start w-full h-screen mt-20 ">
+        <div className="flex items-start justify-start w-full min-h-[70vh] lg:h-screen mt-20 ">
           <div className=" mx-auto flex flex-col">
-            <h1 className="text-5xl font-bold leading-snug tracking-tight text-center text-[#1f2937] dark:text-white  lg:leading-tight lg:text-6xl xl:leading-tight">
+            <h1 className="text-3xl font-bold leading-snug tracking-tight text-center text-[#1f2937] dark:text-white  lg:leading-tight lg:text-6xl xl:leading-tight">
               Take Control of Your Social Media Time with Friends
             </h1>
             <p className="py-5 lg:px-24 px-0 md:px-24 text-center text-lg leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
               An app that helps you limit your social media use to 1 hour (or 2)
               per day with the support of your friends!
             </p>
-            {/* <CarouselSlider /> */}
-            {/* <div className="md:flex grid grid-cols-2 my-10 flex-col md:flex-row w-full justify-center h-full ">
-              {logos.map((logo: any, index: number) => (
-                <div
-                  key={index}
-                  className="mx-auto w-36 lg:w-52 flex-0 flex justify-center items-center text-black dark:text-white px-8 box-border"
-                >
-                  {logo}
-                </div>
-              ))}
-            </div> */}
 
-            {/* <div className="flex flex-row justify-center items-center space-y-3 sm:space-x-4 sm:space-y-0 ">
-              <button
-                onClick={() => {
-                  setOpen(!open);
-                }}
-                className="px-8 py-4 text-lg font-medium text-center text-white bg-[#5dc87a] transition-all ease-in-out hover:scale-[1.03] rounded-lg"
-              >
-                Subscribe now
-              </button>
-            </div> */}
-            <ScrollButton targetRef={targetRef} />
+            {/* <ScrollButton targetRef={targetRef} /> */}
           </div>
         </div>
 
-        <div className="flex flex-col space-y-0">
+        <div className="flex flex-col space-y-0 mt-10 md:mt-0">
           <h1
             ref={targetRef}
             className="text-3xl md:text-3xl lg:text-5xl font-bold leading-snug tracking-tight text-center text-gray-800 lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white"
           >
             <span className="">Join the wait list</span>
           </h1>
-          <div className="flex items-center flex-col lg:flex-row justify-center lg:justify-between w-full h-[80vh]">
+          <div className="flex items-center flex-col lg:flex-row justify-center lg:justify-between w-full min-h-[80vh]">
             <div className="w-full">
-              <div className="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
+              <div className="mt-6 xs:px-8 md:px-28 px-10  sm:flex sm:items-end lg:px-20">
                 <form onSubmit={subscribeUser} className="sm:flex-1">
                   <div>
                     <div className="flex flex-col space-y-8">

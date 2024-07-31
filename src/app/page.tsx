@@ -27,25 +27,6 @@ export default function Home() {
       </SectionTitle>
 
       <Benefits />
-      {/* <Benefits imgPos="right" data={benefitTwo} /> */}
-      {/* 
-      <SectionTitle
-        // preTitle="Watch a video"
-        title="Subscribe to our waiting list"
-      >
-        Please enable JavaScript in your browser to complete this form.
-      </SectionTitle> */}
-
-      {/* <Video videoId="fZ0D0cnR88E" /> */}
-      {/* <Cta open={open} setOpen={setOpen} /> */}
-
-      {/* <SectionTitle title="Frequently Asked Questions">
-        {`Find quick answers to common questions about Powermate. For more help, contact our support team.
-
-`}
-      </SectionTitle>
-
-      <Faq /> */}
     </Container>
   );
 }
