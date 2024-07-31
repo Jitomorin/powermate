@@ -22,7 +22,7 @@ export const SectionTitle = (props: Readonly<SectionTitleProps>) => {
       )}
 
       {props.title && (
-        <h2 className=" my-4 text-3xl md:text-3xl xl:px-80 lg:text-5xl font-bold leading-snug tracking-tight text-center text-gray-800 lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white">
+        <h2 className=" my-4 text-2xl md:text-2xl xl:px-80 lg:text-4xl font-bold leading-snug tracking-tight text-center text-gray-800 lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white">
           {props.title}
         </h2>
       )}

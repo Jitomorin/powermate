@@ -57,8 +57,8 @@ export const Benefits = (props: Readonly<BenefitsProps>) => {
         <div>
           <Image
             src={data.image}
-            width={521}
-            height={521}
+            width={421}
+            height={421}
             alt="Benefits"
             className={"object-cover"}
             placeholder="blur"
