@@ -166,68 +166,6 @@ export const Hero = ({ open, setOpen }: any) => {
           </div>
         </div>
 
-        <div className="flex flex-col space-y-0 mt-10 md:mt-0">
-          <h1
-            ref={targetRef}
-            className="text-3xl md:text-3xl lg:text-5xl font-bold leading-snug tracking-tight text-center text-gray-800 lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white"
-          >
-            <span className="">Join the wait list</span>
-          </h1>
-          {/* <div className="flex items-center flex-col lg:flex-row justify-center lg:justify-between w-full min-h-[80vh]">
-            <div className="w-full">
-              <div className="mt-6 xs:px-8 md:px-28 px-10  sm:flex sm:items-end lg:px-20">
-                <form onSubmit={subscribeUser} className="sm:flex-1">
-                  <div>
-                    <div className="flex flex-col space-y-2">
-                      <div className="flex flex-col space-y-2">
-                        <label className="font-semibold">Name</label>
-                        <input
-                          value={name}
-                          onChange={(e: any) => {
-                            setName(e.target.value);
-                          }}
-                          className="rounded-lg border border-gray-400 p-2 focus:border-gray-400 focus:outline-none focus:ring-0"
-                          placeholder="eg. John doe"
-                        />
-                      </div>
-                      <div className="flex flex-col space-y-2">
-                        <label className="font-semibold">Email</label>
-                        <div className="relative">
-                          <input
-                            ref={inputEl}
-                            value={email}
-                            onChange={(e: any) => setEmail(e.target.value)}
-                            className="w-full rounded-lg border border-gray-400 p-2 pr-16 focus:border-gray-400 focus:outline-none focus:ring-0"
-                            placeholder="eg. johndoe@gmail.com"
-                          />
-                          <button
-                            type="submit"
-                            className="absolute right-2 top-1/2 transform -translate-y-1/2 rounded-md bg-transparent hover:bg-[#5dc8793a] px-3 py-2 text-sm font-semibold text-[#5dc87a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-0"
-                          >
-                            {loading ? "Loading..." : "Submit"}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                 
-                </form>
-              </div>
-            </div>
-            <div className="w-full ">
-              <Image
-                src={RobotImage}
-                width="316"
-                height="317"
-                className={"object-cover mx-auto"}
-                alt="Hero Illustration"
-                loading="eager"
-                // placeholder="blur"
-              />
-            </div>
-          </div> */}
-        </div>
-
         <Toast
           open={showToast}
           message={message}
