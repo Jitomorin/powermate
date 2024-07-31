@@ -92,7 +92,7 @@ export const Hero = ({ open, setOpen }: any) => {
       <Container className="flex flex-col p-0 m-0">
         {/* <SlideOver open={open} setOpen={setOpen} /> */}
         {/* <FloatingBalls /> */}
-        <div className="flex xl:items-start xl:mt-20 2xl:mt-72 justify-start w-full min-h-[70vh] lg:h-screen mt-14 ">
+        <div className="flex xl:items-start xl:mt-20 2xl:mt-72 justify-start w-full min-h-[70vh] lg:h-screen mt-0 ">
           <div className=" mx-auto flex flex-col ">
             <h1 className="text-3xl font-bold leading-snug tracking-tight text-center text-[#1f2937] dark:text-white  lg:leading-tight lg:text-6xl xl:leading-tight md:px-10 xl:px-96">
               Take Control of Your Social Media Time with Friends
