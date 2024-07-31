@@ -174,9 +174,12 @@ export const Hero = ({ open, setOpen }: any) => {
               src={RobotImage}
               width="316"
               height="317"
+              width="316"
+              height="317"
               className={"object-cover mx-auto"}
               alt="Hero Illustration"
               loading="eager"
+              // placeholder="blur"
               // placeholder="blur"
             />
           </div>
@@ -191,5 +194,7 @@ export const Hero = ({ open, setOpen }: any) => {
         />
       </Container>
     </div>
+    </div>
   );
+};
 };
