@@ -92,7 +92,7 @@ export const Hero = ({ open, setOpen }: any) => {
       <Container className="flex flex-col p-0 m-0">
         {/* <SlideOver open={open} setOpen={setOpen} /> */}
         {/* <FloatingBalls /> */}
-        <div className="flex xl:items-start 2xl:mt-72 justify-start w-full  md:max-h-[70vh] lg:h-screen mt-0 ">
+        <div className="flex xl:items-start 2xl:mt-72 justify-start w-full md:max-h-[70vh] 2xl:max-h-[55vh] lg:h-screen mt-0 ">
           <div className=" mx-auto flex flex-col ">
             <h1 className="text-2xl font-bold leading-snug tracking-tight text-center text-[#1f2937] dark:text-white  lg:leading-tight lg:text-4xl xl:leading-tight md:px-10 xl:px-96">
               Take Control of Your Social Media Time with Friends
@@ -102,8 +102,8 @@ export const Hero = ({ open, setOpen }: any) => {
               per day with the support of your friends!
             </p>
             <div className="flex items-center flex-col lg:flex-row justify-center lg:justify-between w-full ">
-              <div className="w-full px-0 sm:px-10 md:px-52 xl:px-96">
-                <div className="mt-6   sm:flex sm:items-end lg:px-20">
+              <div className="px-0 sm:px-10 md:px-52 xl:px-96">
+                <div className="mt-6 sm:flex sm:items-end lg:px-20">
                   <form onSubmit={subscribeUser} className="sm:flex-1">
                     <div>
                       <div className="flex flex-col space-y-2">
