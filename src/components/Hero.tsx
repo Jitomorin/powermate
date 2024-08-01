@@ -102,7 +102,7 @@ export const Hero = ({ open, setOpen }: any) => {
               per day with the support of your friends!
             </p>
             <div className="flex items-center flex-col lg:flex-row justify-center lg:justify-between w-full ">
-              <div className="px-0 sm:px-10 md:px-52 xl:px-96">
+              <div className="w-full px-0 sm:px-10 md:px-52 xl:px-96">
                 <div className="mt-6 sm:flex sm:items-end lg:px-20">
                   <form onSubmit={subscribeUser} className="sm:flex-1">
                     <div>
