@@ -11,7 +11,7 @@ interface SectionTitleProps {
 export const SectionTitle = (props: Readonly<SectionTitleProps>) => {
   return (
     <Container
-      className={`flex w-full flex-col mt-4 ${
+      className={`flex w-full flex-col mt-2 md:mt-4 ${
         props.align === "left" ? "" : "items-center justify-center text-center"
       }`}
     >
@@ -22,7 +22,7 @@ export const SectionTitle = (props: Readonly<SectionTitleProps>) => {
       )}
 
       {props.title && (
-        <h2 className=" my-4 text-2xl md:text-2xl xl:px-80 lg:text-4xl font-bold leading-snug tracking-tight text-center text-gray-800 lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white">
+        <h2 className=" my-4 text-2xl xl:px-80 lg:text-4xl font-bold leading-snug tracking-tight text-center text-gray-800 lg:leading-tight  xl:leading-tight dark:text-white">
           {props.title}
         </h2>
       )}

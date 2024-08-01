@@ -26,7 +26,7 @@ export default function Home() {
         once and for all!
       </SectionTitle>
 
-      <Benefits />
+      <Benefits imgPos="right" />
     </Container>
   );
 }

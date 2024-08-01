@@ -92,12 +92,12 @@ export const Hero = ({ open, setOpen }: any) => {
       <Container className="flex flex-col p-0 m-0">
         {/* <SlideOver open={open} setOpen={setOpen} /> */}
         {/* <FloatingBalls /> */}
-        <div className="flex xl:items-start 2xl:mt-72 justify-start w-full min-h-[70vh] lg:h-screen mt-0 ">
+        <div className="flex xl:items-start 2xl:mt-72 justify-start w-full  md:max-h-[70vh] lg:h-screen mt-0 ">
           <div className=" mx-auto flex flex-col ">
-            <h1 className="text-2xl font-bold leading-snug tracking-tight text-center text-[#1f2937] dark:text-white  lg:leading-tight lg:text-5xl xl:leading-tight md:px-10 xl:px-96">
+            <h1 className="text-2xl font-bold leading-snug tracking-tight text-center text-[#1f2937] dark:text-white  lg:leading-tight lg:text-4xl xl:leading-tight md:px-10 xl:px-96">
               Take Control of Your Social Media Time with Friends
             </h1>
-            <p className="py-5 lg:px-24 xl:px-96 px-0 md:px-24 text-center text-[17px] leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
+            <p className="py-5 lg:px-24 xl:px-96 px-0 md:px-24 text-center text-sm leading-normal text-gray-500 lg:text-lg xl:text-xl dark:text-gray-300">
               An app that helps you limit your social media use to 1 hour (or 2)
               per day with the support of your friends!
             </p>
